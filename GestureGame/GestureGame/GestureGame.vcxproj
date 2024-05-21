@@ -130,6 +130,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="FreamControl.cpp" />
+    <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="InputControl.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Title.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FreamControl.h" />
+    <ClInclude Include="GameMainScene.h" />
+    <ClInclude Include="InputControl.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
