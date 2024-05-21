@@ -61,16 +61,23 @@ int GameMainScene_Initialize(void)
 ñﬂÇËílÅFÇ»Çµ
 ****************************/
 void GameMainScene_Update(void)
-{
-	
-	if (GetKeyFlag(KEY_INPUT_RETURN) == TRUE)
-	{
-		flag = 1;
-		arand = GetRand(10);
-	}
+{	
 	if (flag == 0)
 	{
 		roulette++;
+		if (GetKeyFlag(KEY_INPUT_RETURN) == TRUE)
+		{
+			flag = 1;
+			arand = GetRand(100);
+
+		}
+	}
+	else
+	{
+		if (GetKeyFlag(KEY_INPUT_RETURN) == TRUE)
+		{
+			flag = 0;
+		}
 	}
 }
 
@@ -82,14 +89,14 @@ void GameMainScene_Update(void)
 void GameMainScene_Draw(void)
 {
 	DrawGraph(0, 0, gamemain_background, TRUE);
-	SetFontSize(200);
+	SetFontSize(180);
 	if (flag == 1)
 	{
-		DrawRotaFormatString(150, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		DrawRotaFormatString(100, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
 	}
 	else
 	{
-		DrawRotaFormatString(150, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
+		DrawRotaFormatString(100, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
 	}
 	
 	//DrawFormatString(50, 300, 0x000000, "%s", Odai_List[9].odai);
