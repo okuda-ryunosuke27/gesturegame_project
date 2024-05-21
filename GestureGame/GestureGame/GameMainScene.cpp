@@ -9,7 +9,7 @@
 É}ÉNÉçíËã`
 ****************************/
 #define ODAI_FILE		("dat/odai_ansi.csv")
-#define ODAI_MAX		(100)
+#define ODAI_MAX		(101)
 #define ODAI_NAME_LEN	(100)
 #define PI    3.14f
 
@@ -65,16 +65,15 @@ void GameMainScene_Update(void)
 	if (flag == 0)
 	{
 		roulette++;
-		if (GetKeyFlag(KEY_INPUT_RETURN) == TRUE)
+		if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 		{
 			flag = 1;
 			arand = GetRand(100);
-
 		}
 	}
 	else
 	{
-		if (GetKeyFlag(KEY_INPUT_RETURN) == TRUE)
+		if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 		{
 			flag = 0;
 		}

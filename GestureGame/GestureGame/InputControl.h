@@ -10,3 +10,4 @@ int Input_Escape(void);
 int GetOldKey(int key);
 int GetNowKey(int key);
 int GetKeyFlag(int key);
+int GetMouseFlag(int key);

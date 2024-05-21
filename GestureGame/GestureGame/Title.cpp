@@ -28,7 +28,7 @@ int Title_Initialize(void)
 {
 	int ret = D_NORMAKITY;
 
-	title_background = LoadGraph("texture/back_3.png");
+	title_background = LoadGraph("texture/back.png");
 	title_logo = LoadGraph("texture/title_logo.png");
 	title_spacelogo = LoadGraph("texture/menu_space.png");
 
@@ -74,6 +74,10 @@ void Title_Update(void)
 	}
 
 	if (GetKeyFlag(KEY_INPUT_SPACE) == TRUE)
+	{
+		Change_Scene(E_GAMEMAIN);
+	}
+	if (GetMouseFlag(MOUSE_INPUT_1) == TRUE)
 	{
 		Change_Scene(E_GAMEMAIN);
 	}

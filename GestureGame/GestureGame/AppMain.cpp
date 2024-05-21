@@ -27,7 +27,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	SetMainWindowText("ジェスチャーゲーム");
 
 	//ウィンドウモードで起動
-	ChangeWindowMode(FALSE);
+	ChangeWindowMode(TRUE);
 
 	//画面サイズの最大サイズ,カラービット数を設定
 	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
