@@ -10,8 +10,8 @@
 /*********************************
 マクロ定義
 *********************************/
-#define SCREEN_HEIGHT		(720)
-#define SCREEN_WIDTH		(1280)
+#define SCREEN_HEIGHT		(1080)
+#define SCREEN_WIDTH		(1980)
 #define SCREEN_COLORBIT		(32)
 #define FONT_SIZE			(30)
 
@@ -27,7 +27,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	SetMainWindowText("ジェスチャーゲーム");
 
 	//ウィンドウモードで起動
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(FALSE);
 
 	//画面サイズの最大サイズ,カラービット数を設定
 	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
