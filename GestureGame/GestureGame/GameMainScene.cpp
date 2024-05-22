@@ -12,6 +12,7 @@
 #define ODAI_MAX		(101)
 #define ODAI_NAME_LEN	(100)
 #define PI    3.14f
+#define HEIGHT			(490)
 
 /****************************
 Œ^’è‹`
@@ -47,7 +48,7 @@ int GameMainScene_Initialize(void)
 
 	file_read();
 	
-	gamemain_background = LoadGraph("texture/back_3.png");
+	gamemain_background = LoadGraph("texture/back.png");
 	arand = 0;
 	roulette = 0;
 	flag = 0;
@@ -87,19 +88,46 @@ void GameMainScene_Update(void)
 ****************************/
 void GameMainScene_Draw(void)
 {
-	DrawGraph(0, 0, gamemain_background, TRUE);
+	//DrawGraph(0, 0, gamemain_background, TRUE);
+	DrawRotaGraph(990, 540, 1.0, 0, gamemain_background, TRUE);
+
 	SetFontSize(180);
 	if (flag == 1)
 	{
-		DrawRotaFormatString(100, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//if ((arand >= 0) && (arand < 3))	//ˆê•¶š
+		//{
+		//	DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+		//else if ((arand >= 3) && (arand < 23))	//“ñ•¶š
+		//{
+		//	DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+		//else if ((arand >= 23) && (arand < 48))	//O•¶š
+		//{
+		//	DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+		//else if ((arand >= 48) && (arand < 67))	//l•¶š
+		//{
+		//	DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+		//else if ((arand >= 67) && (arand < 84))//ŒÜ•¶šˆÈã
+		//{
+		//	DrawRotaFormatString(500, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+		//else if((arand >= 84) && (arand < 90))
+		//{
+		//	DrawRotaFormatString(600, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		//}
+
+
+		DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[67].odai);
 	}
 	else
 	{
-		DrawRotaFormatString(100, 280, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
+		DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
 	}
 	
-	//DrawFormatString(50, 300, 0x000000, "%s", Odai_List[9].odai);
-	//DrawFormatString(200, 300, 0x000000, "%s",str);
+	
 }
 
 /****************************

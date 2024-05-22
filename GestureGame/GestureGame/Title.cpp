@@ -73,14 +73,11 @@ void Title_Update(void)
 		title_space_count_change *= -1;
 	}
 
-	if (GetKeyFlag(KEY_INPUT_SPACE) == TRUE)
+	if ((GetKeyFlag(KEY_INPUT_SPACE) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 	{
 		Change_Scene(E_GAMEMAIN);
 	}
-	if (GetMouseFlag(MOUSE_INPUT_1) == TRUE)
-	{
-		Change_Scene(E_GAMEMAIN);
-	}
+	
 }
 
 /****************************
@@ -90,7 +87,8 @@ void Title_Update(void)
 ****************************/
 void Title_Draw(void)
 {
-	DrawGraph(0, 0, title_background, TRUE);
+	//DrawGraph(10, 0, title_background, TRUE);
+	DrawRotaGraph(990, 540, 1.0, 0, title_background, TRUE);
 
 	DrawRotaGraph(640, 150, 1.2, PI / title_logo_angle, title_logo, TRUE);
 	DrawFormatString(0, 0, 0xFFFFFF, "Angle:%lf", title_logo_angle);
