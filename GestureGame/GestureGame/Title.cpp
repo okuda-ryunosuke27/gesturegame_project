@@ -77,6 +77,10 @@ void Title_Update(void)
 	{
 		Change_Scene(E_GAMEMAIN);
 	}
+	if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_2) == TRUE))
+	{
+		Change_Scene(E_DEMO);
+	}
 	
 }
 

@@ -49,5 +49,5 @@ void Demo_Update(void)
 ****************************/
 void Demo_Draw(void)
 {
-
+	DrawFormatString(650, 490, 0XED215B, "ƒfƒ‚‚¾‚æ");
 }
