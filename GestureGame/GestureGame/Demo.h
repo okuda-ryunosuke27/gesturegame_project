@@ -3,6 +3,6 @@
 /****************************
 プロトタイプ宣言
 ****************************/
-int Title_Initialize(void);
-void Title_Update(void);
-void Title_Draw(void);
+int Demo_Initialize(void);
+void Demo_Update(void);
+void Demo_Draw(void);

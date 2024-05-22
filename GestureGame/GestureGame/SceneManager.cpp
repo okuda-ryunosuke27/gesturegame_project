@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "Title.h"
 #include "GameMainScene.h"
+#include "Demo.h"
 
 /****************************
 ïœêîêÈåæ
@@ -20,14 +21,17 @@ int SceneManager_Initialize(GAME_MODE mode)
 	read_error = D_NORMAKITY;
 	switch (mode)
 	{
-	case E_TITLE:
-		read_error = Title_Initialize();
-		break;
-	case E_GAMEMAIN:
-		read_error = GameMainScene_Initialize();
-		break;
-	default:
-		break;
+		case E_TITLE:
+			read_error = Title_Initialize();
+			break;
+		case E_GAMEMAIN:
+			read_error = GameMainScene_Initialize();
+			break;
+		case E_DEMO:
+			read_error = Demo_Initialize();
+			break;
+		default:
+			break;
 	}
 
 	game_mode = mode;
@@ -51,12 +55,15 @@ void SceneManager_Update(void)
 
 	switch (game_mode)
 	{
-	case E_TITLE:
-		Title_Update();
-		break;
-	case E_GAMEMAIN:
-		GameMainScene_Update();
-		break;
+		case E_TITLE:
+			Title_Update();
+			break;
+		case E_GAMEMAIN:
+			GameMainScene_Update();
+			break;
+		case E_DEMO:
+			Demo_Update();
+			break;
 	default:
 		break;
 	}
@@ -71,12 +78,15 @@ void SceneManager_Draw(void)
 {
 	switch (game_mode)
 	{
-	case E_TITLE:
-		Title_Draw();
-		break;
-	case E_GAMEMAIN:
-		GameMainScene_Draw();
-		break;
+		case E_TITLE:
+			Title_Draw();
+			break;
+		case E_GAMEMAIN:
+			GameMainScene_Draw();
+			break;
+		case E_DEMO:
+			Demo_Draw();
+			break;
 	default:
 		break;
 	}
