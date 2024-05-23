@@ -2,6 +2,8 @@
 #include "DxLib.h"
 #include "SceneManager.h"
 #include "InputControl.h"
+#include <stdlib.h>
+#include <time.h>
 
 
 /****************************
@@ -59,6 +61,7 @@ int GameMainScene_Initialize(void)
 	count = 0;
 	signal = 3;
 	count_fontsize = 180;
+	srand((unsigned int)time(NULL));
 
 	return ret;
 }
@@ -94,7 +97,12 @@ void GameMainScene_Update(void)
 			if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 			{
 				flag = 1;
+				//arand = rand() % 101;
 				arand = GetRand(100);
+			}
+			if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
+			{
+				Change_Scene(E_TITLE);
 			}
 		}
 		else
@@ -116,8 +124,8 @@ void GameMainScene_Draw(void)
 {
 	DrawRotaGraph(990, 540, 1.0, 0, gamemain_background, TRUE);
 
-	/*DrawFormatString(0, 0, 0xED215B, "count:%d",count);
-	DrawFormatString(0, 180, 0xED215B, "signal:%d",signal);*/
+	//DrawFormatString(0, 0, 0xED215B, "arand:%d",arand);
+	/*DrawFormatString(0, 180, 0xED215B, "signal:%d", signal); */
 
 	SetFontSize(180);
 

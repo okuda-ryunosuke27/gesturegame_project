@@ -39,7 +39,10 @@ int Demo_Initialize(void)
 ****************************/
 void Demo_Update(void)
 {
-
+	if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
+	{
+		Change_Scene(E_TITLE);
+	}
 }
 
 /****************************

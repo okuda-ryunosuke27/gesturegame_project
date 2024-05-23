@@ -6,7 +6,8 @@
 /****************************
 É}ÉNÉçíËã`
 ****************************/
-#define PI    3.14f
+#define PI				(3.14f)
+#define HEIGHT			(350)
 
 /****************************
 ïœêîêÈåæ
@@ -94,11 +95,10 @@ void Title_Draw(void)
 	//DrawGraph(10, 0, title_background, TRUE);
 	DrawRotaGraph(990, 540, 1.0, 0, title_background, TRUE);
 
-	DrawRotaGraph(640, 150, 1.2, PI / title_logo_angle, title_logo, TRUE);
-	DrawFormatString(0, 0, 0xFFFFFF, "Angle:%lf", title_logo_angle);
+	DrawRotaGraph(990, HEIGHT, 2.0, PI / title_logo_angle, title_logo, TRUE);
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, title_space_count);
+	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, title_space_count);
 	DrawGraph(561, 450, title_spacelogo, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);*/
 
 }
