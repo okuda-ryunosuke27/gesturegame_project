@@ -4,6 +4,7 @@
 #include "InputControl.h"
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 
 /****************************
@@ -53,7 +54,7 @@ int GameMainScene_Initialize(void)
 	int ret = D_NORMAKITY;
 
 	file_read();
-	
+
 	gamemain_background = LoadGraph("texture/back.png");
 	arand = 0;
 	roulette = 0;
@@ -73,7 +74,7 @@ int GameMainScene_Initialize(void)
 戻り値：なし
 ****************************/
 void GameMainScene_Update(void)
-{	
+{
 	if (countflag == 1)
 	{
 		count++;
@@ -139,70 +140,70 @@ void GameMainScene_Draw(void)
 		SetFontSize(count_fontsize);
 		switch (signal)
 		{
-			case 0:
-				//DrawFormatString(450, HEIGHT, 0xED215B, "スタート");
-				break;
-			case 1:
-				//DrawFormatString(900, HEIGHT, 0xED215B, "1");
-				DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "1");
-				break;
-			case 2:
-				//DrawFormatString(900, HEIGHT, 0xED215B, "2");
-				DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "2");
-				break;
-			case 3:
-				//DrawFormatString(900, HEIGHT, 0xED215B, "3");
-				DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "3");
-				break;
-			default:
-				break;
+		case 0:
+			//DrawFormatString(450, HEIGHT, 0xED215B, "スタート");
+			break;
+		case 1:
+			//DrawFormatString(900, HEIGHT, 0xED215B, "1");
+			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "1");
+			break;
+		case 2:
+			//DrawFormatString(900, HEIGHT, 0xED215B, "2");
+			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "2");
+			break;
+		case 3:
+			//DrawFormatString(900, HEIGHT, 0xED215B, "3");
+			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "3");
+			break;
+		default:
+			break;
 		}
 	}
 	else
 	{
-		
+
 		if (flag == 1)
 		{
-			//if ((arand >= 0) && (arand < 3))	//一文字
-			//{
-			//	DrawRotaFormatString(900, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 3) && (arand < 23))	//二文字
-			//{
-			//	DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 23) && (arand < 48))	//三文字
-			//{
-			//	DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 48) && (arand < 67))	//四文字
-			//{
-			//	DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 67) && (arand < 84))	//五文字
-			//{
-			//	DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 84) && (arand < 90))	//六文字
-			//{
-			//	DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 90) && (arand < 93))	//七文字
-			//{
-			//	DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 93) && (arand < 97))	//八文字
-			//{
-			//	DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else if ((arand >= 97) && (arand < 100))	//九文字
-			//{
-			//	DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
-			//else										//十文字以上
-			//{
-			//	DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			//}
+			if ((arand >= 0) && (arand < 3))	//一文字
+			{
+				DrawRotaFormatString(900, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 3) && (arand < 23))	//二文字
+			{
+				DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 23) && (arand < 48))	//三文字
+			{
+				DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 48) && (arand < 67))	//四文字
+			{
+				DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 67) && (arand < 84))	//五文字
+			{
+				DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 84) && (arand < 90))	//六文字
+			{
+				DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 90) && (arand < 93))	//七文字
+			{
+				DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 93) && (arand < 97))	//八文字
+			{
+				DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else if ((arand >= 97) && (arand < 100))	//九文字
+			{
+				DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
+			else										//十文字以上
+			{
+				DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			}
 
 
 			//DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[97].odai);
@@ -212,7 +213,7 @@ void GameMainScene_Draw(void)
 			DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
 		}
 	}
-	
+
 }
 
 /****************************
@@ -235,18 +236,40 @@ void file_read(void)
 	}
 	else
 	{
-		for ( i = 0; i < ODAI_MAX; i++)
+		for (i = 0; i < ODAI_MAX; i++)
 		{
 			fscanf_s(fp, "%s,\n", Odai_Read[i].odai, ODAI_NAME_LEN);
-
-			for (int j = 0; j < ODAI_MAX; j++)
-			{
-
-			}
 		}
 		fclose(fp);
 	}
 
-	
+	for (i = 0; i < ODAI_MAX; i++)
+	{
+		a[i] = -1;
+	}
+
+	for (i = 0; i < ODAI_MAX; i++)
+	{
+		int b;
+		while (1)
+		{
+			int isexist = FALSE;
+			b = GetRand(100);
+			for (int k = 0; k < ODAI_MAX; k++)
+			{
+				if (a[k] == b)
+				{
+					isexist = TRUE;
+					break;
+				}
+			}
+			if (isexist != TRUE)
+			{
+				break;
+			}
+		}
+		a[i] = b;
+		strcpy_s(Odai_List[i].odai, Odai_Read[b].odai);
+	}
 
 }
