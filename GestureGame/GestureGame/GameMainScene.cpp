@@ -2,8 +2,6 @@
 #include "DxLib.h"
 #include "SceneManager.h"
 #include "InputControl.h"
-#include <stdlib.h>
-#include <time.h>
 #include <string.h>
 
 
@@ -42,7 +40,7 @@ int flag;
 int countflag;
 int count;
 int signal;
-int count_fontsize;
+float count_fontsize;
 
 /****************************
 ゲームメイン画面：初期化処理
@@ -62,8 +60,7 @@ int GameMainScene_Initialize(void)
 	countflag = 1;
 	count = 0;
 	signal = 3;
-	count_fontsize = 180;
-	srand((unsigned int)time(NULL));
+	count_fontsize = 1.0f;
 
 	return ret;
 }
@@ -78,46 +75,52 @@ void GameMainScene_Update(void)
 	if (countflag == 1)
 	{
 		count++;
-		count_fontsize++;
+		count_fontsize += 0.008f;
 		if (count % 80 == 0)
 		{
 			signal--;
-			count_fontsize = 180;
+			count_fontsize = 1.0f;
 		}
 		if (signal == 0)
 		{
 			countflag = 0;
 			count = 0;
 			signal = 3;
+			count_fontsize = 1.0f;
 		}
 	}
 	else
 	{
-		if (flag == 0)
+		if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 		{
-			roulette++;
-			if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
-			{
-				flag = 1;
-				//arand = rand() % 101;
-				arand = GetRand(100);
-			}
-			if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
-			{
-				Change_Scene(E_TITLE);
-			}
+			arand += 1;
 		}
-		else
-		{
-			if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
-			{
-				flag = 0;
-			}
-			if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
-			{
-				Change_Scene(E_TITLE);
-			}
-		}
+
+		//if (flag == 0)
+		//{
+		//	roulette++;
+		//	if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
+		//	{
+		//		flag = 1;
+		//		//arand = rand() % 101;
+		//		arand = GetRand(100);
+		//	}
+		//	if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
+		//	{
+		//		Change_Scene(E_TITLE);
+		//	}
+		//}
+		//else
+		//{
+		//	if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
+		//	{
+		//		flag = 0;
+		//	}
+		//	if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
+		//	{
+		//		Change_Scene(E_TITLE);
+		//	}
+		//}
 	}
 }
 
@@ -137,7 +140,6 @@ void GameMainScene_Draw(void)
 
 	if (countflag == 1)
 	{
-		SetFontSize(count_fontsize);
 		switch (signal)
 		{
 		case 0:
@@ -145,15 +147,15 @@ void GameMainScene_Draw(void)
 			break;
 		case 1:
 			//DrawFormatString(900, HEIGHT, 0xED215B, "1");
-			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "1");
+			DrawRotaFormatString(900, HEIGHT, count_fontsize, count_fontsize, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "1");
 			break;
 		case 2:
 			//DrawFormatString(900, HEIGHT, 0xED215B, "2");
-			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "2");
+			DrawRotaFormatString(900, HEIGHT, count_fontsize, count_fontsize, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "2");
 			break;
 		case 3:
 			//DrawFormatString(900, HEIGHT, 0xED215B, "3");
-			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "3");
+			DrawRotaFormatString(900, HEIGHT, count_fontsize, count_fontsize, 0, 0, PI * 6, 0xED215B, 0xFFFFFF, FALSE, "3");
 			break;
 		default:
 			break;
@@ -161,57 +163,58 @@ void GameMainScene_Draw(void)
 	}
 	else
 	{
-
-		if (flag == 1)
+		if ((arand >= 0) && (arand < 3))	//一文字
 		{
-			if ((arand >= 0) && (arand < 3))	//一文字
-			{
-				DrawRotaFormatString(900, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 3) && (arand < 23))	//二文字
-			{
-				DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 23) && (arand < 48))	//三文字
-			{
-				DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 48) && (arand < 67))	//四文字
-			{
-				DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 67) && (arand < 84))	//五文字
-			{
-				DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 84) && (arand < 90))	//六文字
-			{
-				DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 90) && (arand < 93))	//七文字
-			{
-				DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 93) && (arand < 97))	//八文字
-			{
-				DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 97) && (arand < 100))	//九文字
-			{
-				DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else										//十文字以上
-			{
-				DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-
-
-			//DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[97].odai);
+			DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
 		}
-		else
+		else if ((arand >= 3) && (arand < 23))	//二文字
 		{
-			DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
+			DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
 		}
+		else if ((arand >= 23) && (arand < 48))	//三文字
+		{
+			DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 48) && (arand < 67))	//四文字
+		{
+			DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 67) && (arand < 84))	//五文字
+		{
+			DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 84) && (arand < 90))	//六文字
+		{
+			DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 90) && (arand < 93))	//七文字
+		{
+			DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 93) && (arand < 97))	//八文字
+		{
+			DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if ((arand >= 97) && (arand < 100))	//九文字
+		{
+			DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else										//十文字以上
+		{
+			DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		
+		//変数に入っているか確かめる関数
+		//DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[97].odai);
+		
+		//if (flag == 1)
+		//{
+		//	
+		//}
+		//else
+		//{
+		//	DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
+		//}
 	}
 
 }
