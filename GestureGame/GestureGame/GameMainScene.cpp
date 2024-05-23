@@ -223,7 +223,7 @@ void GameMainScene_Draw(void)
 void file_read(void)
 {
 	FILE* fp = NULL;
-	int i, a;
+	int i, a[ODAI_MAX];
 
 	OutputDebugString("ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‚Ü‚·");
 	fopen_s(&fp, ODAI_FILE, "r");
@@ -238,14 +238,13 @@ void file_read(void)
 		for ( i = 0; i < ODAI_MAX; i++)
 		{
 			fscanf_s(fp, "%s,\n", Odai_Read[i].odai, ODAI_NAME_LEN);
+
+			for (int j = 0; j < ODAI_MAX; j++)
+			{
+
+			}
 		}
 		fclose(fp);
-
-		for ( i = 0; i < ODAI_MAX; i++)
-		{
-
-
-		}
 	}
 
 	
