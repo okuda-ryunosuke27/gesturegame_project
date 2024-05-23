@@ -32,6 +32,7 @@ void file_read(void);			//ファイル読み込み
 /****************************
 変数宣言
 ****************************/
+J_ODAI Odai_Read[ODAI_MAX];
 J_ODAI Odai_List[ODAI_MAX];
 int gamemain_background;
 int arand;
@@ -111,6 +112,10 @@ void GameMainScene_Update(void)
 			{
 				flag = 0;
 			}
+			if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
+			{
+				Change_Scene(E_TITLE);
+			}
 		}
 	}
 }
@@ -158,46 +163,46 @@ void GameMainScene_Draw(void)
 		
 		if (flag == 1)
 		{
-			if ((arand >= 0) && (arand < 3))	//一文字
-			{
-				DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 3) && (arand < 23))	//二文字
-			{
-				DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 23) && (arand < 48))	//三文字
-			{
-				DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 48) && (arand < 67))	//四文字
-			{
-				DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 67) && (arand < 84))	//五文字
-			{
-				DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 84) && (arand < 90))	//六文字
-			{
-				DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 90) && (arand < 93))	//七文字
-			{
-				DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 93) && (arand < 97))	//八文字
-			{
-				DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else if ((arand >= 97) && (arand < 100))	//九文字
-			{
-				DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
-			else										//十文字以上
-			{
-				DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-			}
+			//if ((arand >= 0) && (arand < 3))	//一文字
+			//{
+			//	DrawRotaFormatString(900, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 3) && (arand < 23))	//二文字
+			//{
+			//	DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 23) && (arand < 48))	//三文字
+			//{
+			//	DrawRotaFormatString(700, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 48) && (arand < 67))	//四文字
+			//{
+			//	DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 67) && (arand < 84))	//五文字
+			//{
+			//	DrawRotaFormatString(550, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 84) && (arand < 90))	//六文字
+			//{
+			//	DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 90) && (arand < 93))	//七文字
+			//{
+			//	DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 93) && (arand < 97))	//八文字
+			//{
+			//	DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else if ((arand >= 97) && (arand < 100))	//九文字
+			//{
+			//	DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
+			//else										//十文字以上
+			//{
+			//	DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+			//}
 
 
 			//DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[97].odai);
@@ -218,7 +223,7 @@ void GameMainScene_Draw(void)
 void file_read(void)
 {
 	FILE* fp = NULL;
-	int i;
+	int i, a;
 
 	OutputDebugString("ファイルを読み込みます");
 	fopen_s(&fp, ODAI_FILE, "r");
@@ -232,9 +237,15 @@ void file_read(void)
 	{
 		for ( i = 0; i < ODAI_MAX; i++)
 		{
-			fscanf_s(fp, "%s,\n",Odai_List[i].odai, ODAI_NAME_LEN);
+			fscanf_s(fp, "%s,\n", Odai_Read[i].odai, ODAI_NAME_LEN);
 		}
 		fclose(fp);
+
+		for ( i = 0; i < ODAI_MAX; i++)
+		{
+
+
+		}
 	}
 
 	
