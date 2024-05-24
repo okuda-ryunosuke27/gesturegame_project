@@ -14,9 +14,10 @@
 ****************************/
 int title_background;			//タイトル背景
 int title_logo;					//タイトルロゴ
-int title_spacelogo;			//タイトルメニューに入るためのあれ
-int title_space_count;			//カウントをプラスにする変数
-int title_space_count_change;	//スペースカウントをマイナスにする変数
+int logo_x;
+int logo_y;
+int logo_y_change;
+int logo_flag;
 double title_logo_change;			//角度をマイナスにする変数
 double title_logo_angle;		//角度をプラスにする
 
@@ -31,7 +32,6 @@ int Title_Initialize(void)
 
 	title_background = LoadGraph("texture/back.png");
 	title_logo = LoadGraph("texture/title_logo.png");
-	title_spacelogo = LoadGraph("texture/menu_space.png");
 
 	if (title_background == D_ERROR)
 	{
@@ -41,15 +41,14 @@ int Title_Initialize(void)
 	{
 		ret = D_ERROR;
 	}
-	if (title_spacelogo == D_ERROR)
-	{
-		ret = D_ERROR;
-	}
+
 	
 	title_logo_angle = -270.0;
 	title_logo_change = 2.0;
-	title_space_count = 0;
-	title_space_count_change = 2;
+	logo_flag = GetRand(1);
+	logo_x = -800;
+	logo_y = 980;
+	logo_y_change = 4;
 
 	return ret;
 }
@@ -61,18 +60,33 @@ int Title_Initialize(void)
 ****************************/
 void Title_Update(void)
 {
-	title_space_count += title_space_count_change;
-	title_logo_angle += title_logo_change;
-
-	if (title_logo_angle >= 270 || title_logo_angle <= -270)
+	switch (logo_flag)
 	{
-		title_logo_change *= -1.0;
-	}
+		case 0:
+			title_logo_angle += title_logo_change;
 
-	if (title_space_count >= 255 || title_space_count <= 0)
-	{
-		title_space_count_change *= -1;
+			if (title_logo_angle >= 270 || title_logo_angle <= -270)
+			{
+				title_logo_change *= -1.0;
+			}
+			break;
+		case 1:
+			logo_x += 5;
+			logo_y += logo_y_change;
+			if (logo_y < 900 || logo_y > 1000)
+			{
+				logo_y_change *= -1;
+			}
+			if (logo_x >= 2880)
+			{
+				logo_x = -800;
+			}
+			break;
+		default:
+			break;
 	}
+	
+	
 
 	if ((GetKeyFlag(KEY_INPUT_SPACE) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 	{
@@ -95,7 +109,18 @@ void Title_Draw(void)
 	//DrawGraph(10, 0, title_background, TRUE);
 	DrawRotaGraph(990, 540, 1.0, 0, title_background, TRUE);
 
-	DrawRotaGraph(990, HEIGHT, 2.0, PI / title_logo_angle, title_logo, TRUE);
+	switch (logo_flag)
+	{
+		case 0:
+			DrawRotaGraph(990, HEIGHT, 2.0, PI / title_logo_angle, title_logo, TRUE);
+			break;
+		case 1:
+			DrawRotaGraph(logo_x, logo_y, 2.0, PI / title_logo_angle, title_logo, TRUE);
+			break;
+		default:
+			break;
+	}
+	
 
 	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, title_space_count);
 	DrawGraph(561, 450, title_spacelogo, TRUE);

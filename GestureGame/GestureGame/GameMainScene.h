@@ -6,3 +6,5 @@
 int GameMainScene_Initialize(void);
 void GameMainScene_Update(void);
 void GameMainScene_Draw(void);
+
+void file_read(void);			//ƒtƒ@ƒCƒ‹“Ç‚İ‚İ

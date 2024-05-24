@@ -6,6 +6,7 @@
 #include "FreamControl.h"
 #include "InputControl.h"
 #include "SceneManager.h"
+#include "GameMainScene.h"
 
 /*********************************
 マクロ定義
@@ -55,6 +56,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 	//文字サイズを設定
 	SetFontSize(FONT_SIZE);
+
+	file_read();
 
 	//ゲームループ
 	while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
