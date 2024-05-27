@@ -92,11 +92,6 @@ void Title_Update(void)
 	{
 		Change_Scene(E_GAMEMAIN);
 	}
-	/*if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_2) == TRUE))
-	{
-		Change_Scene(E_DEMO);
-	}*/
-	
 }
 
 /****************************
@@ -120,10 +115,4 @@ void Title_Draw(void)
 		default:
 			break;
 	}
-	
-
-	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, title_space_count);
-	DrawGraph(561, 450, title_spacelogo, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);*/
-
 }

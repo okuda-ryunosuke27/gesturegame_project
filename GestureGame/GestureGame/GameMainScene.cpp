@@ -9,7 +9,7 @@
 マクロ定義
 ****************************/
 #define ODAI_FILE		("dat/odai_ansi.csv")
-#define ODAI_MAX		(200)
+#define ODAI_MAX		(232)
 #define ODAI_NAME_LEN	(25)
 #define ODAI_LIST_MAX	(50)
 #define PI    3.14f
@@ -215,16 +215,7 @@ void GameMainScene_Draw(void)
 		}
 		
 		//変数に入っているか確かめる関数
-		//DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[97].odai);
-		
-		//if (flag == 1)
-		//{
-		//	
-		//}
-		//else
-		//{
-		//	DrawRotaFormatString(800, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[roulette % 10].odai);
-		//}
+		//DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_Read[215].odai);
 	}
 
 }
