@@ -39,6 +39,8 @@ int gamemain_background;
 int arand;
 int countflag;
 int count;
+int successfulcount;
+int passcount;
 int signal;
 float count_fontsize;
 float kaiten;
@@ -61,6 +63,8 @@ int GameMainScene_Initialize(void)
 	signal = 3;
 	count_fontsize = 1.0f;
 	kaiten = 6.0f;
+	successfulcount = 0;
+	passcount = 0;
 
 	return ret;
 }
@@ -97,10 +101,16 @@ void GameMainScene_Update(void)
 		if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 		{
 			arand += 1;
+			successfulcount += 1;
 		}
 		if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
 		{
 			Change_Scene(E_TITLE);
+		}
+		if (GetKeyFlag(KEY_INPUT_SPACE) == TRUE)
+		{
+			arand += 1;
+			passcount += 1;
 		}
 		//if (flag == 0)
 		//{
@@ -139,8 +149,8 @@ void GameMainScene_Draw(void)
 {
 	DrawRotaGraph(990, 540, 1.0, 0, gamemain_background, TRUE);
 
-	//DrawFormatString(0, 0, 0xED215B, "arand:%d",arand);
-	/*DrawFormatString(0, 180, 0xED215B, "signal:%d", signal); */
+	DrawFormatString(0, 0, 0xED215B, "成功:%d パス数:%d",successfulcount,passcount);
+	//DrawFormatString(0, 180, 0xED215B, "パス数:%d", passcount); 
 
 	SetFontSize(180);
 
