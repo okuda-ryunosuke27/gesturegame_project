@@ -215,7 +215,7 @@ void GameMainScene_Draw(void)
 		}
 		
 		//•Ï”‚É“ü‚Á‚Ä‚¢‚é‚©Šm‚©‚ß‚éŠÖ”
-		//DrawRotaFormatString(650, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_Read[215].odai);
+		//DrawRotaFormatString(900, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_Read[17].odai);
 	}
 
 }
