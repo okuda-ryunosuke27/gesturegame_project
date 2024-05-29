@@ -56,7 +56,7 @@ int GameMainScene_Initialize(void)
 
 	gamemain_background = LoadGraph("texture/back.png");
 	arand = 0;
-	countflag = 0;
+	countflag = 1;
 	count = 0;
 	signal = 3;
 	count_fontsize = 1.0f;
@@ -74,7 +74,7 @@ void GameMainScene_Update(void)
 {
 	if (countflag == 1)
 	{
-		/*count++;
+		count++;
 		count_fontsize += 0.008f;
 		kaiten += 0.05f;
 		if (count % 80 == 0)
@@ -90,7 +90,7 @@ void GameMainScene_Update(void)
 			signal = 3;
 			count_fontsize = 1.0f;
 			
-		}*/
+		}
 	}
 	else
 	{
@@ -169,53 +169,53 @@ void GameMainScene_Draw(void)
 	}
 	else
 	{
-		//if (Odai_List[arand].num == 1)	//一文字
-		//{
-		//	DrawRotaFormatString(900, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 2)	//二文字
-		//{
-		//	DrawRotaFormatString(800, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 3)	//三文字
-		//{
-		//	DrawRotaFormatString(700, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 4)	//四文字
-		//{
-		//	DrawRotaFormatString(650, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 5)	//五文字
-		//{
-		//	DrawRotaFormatString(550, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 6)	//六文字
-		//{
-		//	DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 7)	//七文字
-		//{
-		//	DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 8)	//八文字
-		//{
-		//	DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 9)	//九文字
-		//{
-		//	DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 10)	//十文字以上
-		//{
-		//	DrawRotaFormatString(150, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
-		//else if (Odai_List[arand].num == 11)	//十一文字以上
-		//{
-		//	DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
-		//}
+		if (Odai_List[arand].num == 1)	//一文字
+		{
+			DrawRotaFormatString(790, 390, 2.5, 2.5, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 2)	//二文字
+		{
+			DrawRotaFormatString(540, 390, 2.5, 2.5, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 3)	//三文字
+		{
+			DrawRotaFormatString(300, 390, 2.5, 2.5, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 4)	//四文字
+		{
+			DrawRotaFormatString(80, 390, 2.5, 2.5, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 5)	//五文字
+		{
+			DrawRotaFormatString(65, 390, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 6)	//六文字
+		{
+			DrawRotaFormatString(450, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 7)	//七文字
+		{
+			DrawRotaFormatString(350, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 8)	//八文字
+		{
+			DrawRotaFormatString(300, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 9)	//九文字
+		{
+			DrawRotaFormatString(200, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 10)	//十文字以上
+		{
+			DrawRotaFormatString(150, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
+		else if (Odai_List[arand].num == 11)	//十一文字以上
+		{
+			DrawRotaFormatString(100, HEIGHT, 1.0, 1.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[arand].odai);
+		}
 		
 		//変数に入っているか確かめる関数
-		DrawRotaFormatString(830, HEIGHT, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_Read[7].odai);
+		//DrawRotaFormatString(65, 390, 2.0, 2.0, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_Read[195].odai);
 	}
 
 }
