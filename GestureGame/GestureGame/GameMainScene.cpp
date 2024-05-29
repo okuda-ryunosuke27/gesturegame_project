@@ -149,7 +149,7 @@ void GameMainScene_Draw(void)
 {
 	DrawRotaGraph(990, 540, 1.0, 0, gamemain_background, TRUE);
 
-	DrawFormatString(0, 0, 0xED215B, "成功:%d パス数:%d",successfulcount,passcount);
+	DrawFormatString(50, 0, 0xED215B, "成功:%d パス数:%d",successfulcount,passcount);
 	//DrawFormatString(0, 180, 0xED215B, "パス数:%d", passcount); 
 
 	SetFontSize(180);
@@ -281,7 +281,7 @@ void Odai_Store()
 		while (1)
 		{
 			int isexist = FALSE;
-			b = GetRand(182);
+			b = GetRand(230);
 			for (int k = 0; k < ODAI_LIST_MAX; k++)
 			{
 				if (a[k] == b)
