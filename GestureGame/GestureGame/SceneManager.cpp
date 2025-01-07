@@ -64,8 +64,8 @@ void SceneManager_Update(void)
 		case E_DEMO:
 			Demo_Update();
 			break;
-	default:
-		break;
+		default:
+			break;
 	}
 }
 
