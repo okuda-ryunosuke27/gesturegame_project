@@ -92,6 +92,7 @@ void Title_Update(void)
 				logo_x = -800;
 			}
 			break;
+		//Žl•û”ª•û‚ÉˆÚ“®‚·‚é
 		case 2:
 			if (logo_flag2 == 0)
 			{
