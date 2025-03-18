@@ -15,9 +15,11 @@
 int title_background;			//タイトル背景
 int title_logo;					//タイトルロゴ
 int logo_x;						//ロゴのx軸
+int logo_x_change;				//ロゴのy軸の方向を切り替えるために作った
 int logo_y;						//ロゴのy軸
 int logo_y_change;				//ロゴのy軸の方向を切り替えるために作った
 int logo_flag;					//ロゴの動くが起動ごとに違うようにしたいがために作った。
+int logo_flag2;					//ロゴの座標の初期化に使う(タイトル行ったときに一回だけ見るようにする)
 double title_logo_change;		//角度をマイナスにする変数
 double title_logo_angle;		//角度をプラスにする
 
@@ -48,10 +50,12 @@ int Title_Initialize(void)
 	//各変数の初期化を行っております。
 	title_logo_angle = -270.0;
 	title_logo_change = 2.0;
-	logo_flag = GetRand(1);
+	logo_flag = GetRand(2);
+	logo_flag2 = 0;
 	logo_x = -800;
 	logo_y = 980;
-	logo_y_change = 4;
+	logo_x_change = 5;
+	logo_y_change = 5;
 
 	return ret;
 }
@@ -79,7 +83,7 @@ void Title_Update(void)
 		case 1:
 			logo_x += 5;
 			logo_y += logo_y_change;
-			if (logo_y < 900 || logo_y > 1000)
+			if (logo_y < 800 || logo_y > 1000)
 			{
 				logo_y_change *= -1;
 			}
@@ -87,6 +91,26 @@ void Title_Update(void)
 			{
 				logo_x = -800;
 			}
+			break;
+		case 2:
+			if (logo_flag2 == 0)
+			{
+				logo_x = 0;
+				logo_y = 100;
+				logo_flag2 = 1;
+			}
+			logo_x += logo_x_change;
+			logo_y += logo_y_change;
+
+			if (logo_y < 0 || logo_y > 1000)
+			{
+				logo_y_change *= -1;
+			}
+			if (logo_x < 0 || logo_x > 1980)
+			{
+				logo_x_change *= -1;
+			}
+			
 			break;
 		default:
 			break;
@@ -118,6 +142,7 @@ void Title_Draw(void)
 			DrawRotaGraph(990, HEIGHT, 2.0, PI / title_logo_angle, title_logo, TRUE);
 			break;
 		case 1:
+		case 2:
 			DrawRotaGraph(logo_x, logo_y, 2.0, PI / title_logo_angle, title_logo, TRUE);
 			break;
 		default:
