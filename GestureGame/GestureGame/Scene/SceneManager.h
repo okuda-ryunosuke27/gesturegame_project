@@ -12,7 +12,6 @@ enum GAME_MODE
 {
 	E_TITLE,
 	E_GAMEMAIN,
-	E_DEMO,
 };
 
 /****************************

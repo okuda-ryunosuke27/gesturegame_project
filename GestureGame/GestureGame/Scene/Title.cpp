@@ -1,7 +1,7 @@
 #include "Title.h"
 #include "DxLib.h"
 #include "SceneManager.h"
-#include "InputControl.h"
+#include "../Utility/InputControl.h"
 
 /****************************
 ƒ}ƒNƒ’è‹`

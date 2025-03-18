@@ -2,7 +2,6 @@
 #include "DxLib.h"
 #include "Title.h"
 #include "GameMainScene.h"
-#include "Demo.h"
 
 /****************************
 変数宣言
@@ -18,22 +17,25 @@ int read_error;
 ****************************/
 int SceneManager_Initialize(GAME_MODE mode)
 {
+	//エラーの確認
 	read_error = D_NORMAKITY;
 	switch (mode)
 	{
 		case E_TITLE:
+			//もしエラーなら-1が帰ってきます。
 			read_error = Title_Initialize();
 			break;
 		case E_GAMEMAIN:
+			//もしエラーなら-1が帰ってきます。
 			read_error = GameMainScene_Initialize();
-			break;
-		case E_DEMO:
-			read_error = Demo_Initialize();
 			break;
 		default:
 			break;
 	}
 
+	//ゲームモードを切り替えるためにある
+	//今のモードと次のモードをを入れ替えたりします。
+	//アップデートで前フレームのモードのこと書いてます。
 	game_mode = mode;
 	next_mode = game_mode;
 
@@ -61,9 +63,6 @@ void SceneManager_Update(void)
 		case E_GAMEMAIN:
 			GameMainScene_Update();
 			break;
-		case E_DEMO:
-			Demo_Update();
-			break;
 		default:
 			break;
 	}
@@ -83,9 +82,6 @@ void SceneManager_Draw(void)
 			break;
 		case E_GAMEMAIN:
 			GameMainScene_Draw();
-			break;
-		case E_DEMO:
-			Demo_Draw();
 			break;
 	default:
 		break;

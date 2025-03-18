@@ -1,7 +1,7 @@
-#include "GameMainScene.h"
 #include "DxLib.h"
+#include "GameMainScene.h"
 #include "SceneManager.h"
-#include "InputControl.h"
+#include "../Utility/InputControl.h"
 #include <string.h>
 
 
@@ -14,6 +14,7 @@
 #define ODAI_LIST_MAX	(50)						//実行した時に出すお題の最大個数
 #define PI				(3.14f)						//回転率
 #define HEIGHT			(490)						//文字の中心座標
+#define RAND_MAX		(230)						//お題をランダムで入れたいからそのMAX値
 
 /****************************
 型定義
@@ -23,7 +24,7 @@ typedef struct
 	int num;
 	char odai[ODAI_NAME_LEN];
 }J_ODAI;	
-//csvの中からこちらに格納している
+//csvの中からこちらに格納するために構造体で作った
 //numは文字の個数を格納するところ
 //odaiは文字列を格納している。
 
@@ -46,7 +47,6 @@ int successfulcount;				//正解をカウントする変数
 int passcount;						//パスの数をカウントする関数
 int signal;							//数字を表示させるのに変数に格納している
 float count_fontsize;				//カウントダウンのフォントの大きさを変える
-float kaiten;						//カウントダウンの値を少し回転させるためにある
 
 /****************************
 ゲームメイン画面：初期化処理
@@ -57,15 +57,27 @@ int GameMainScene_Initialize(void)
 {
 	int ret = D_NORMAKITY;
 
-	Odai_Store();					//お題を格納する準備する関数
+	//お題をcsvから読み込む
+	file_read();
 
+	//お題を格納する準備する関数
+	Odai_Store();
+
+	//後ろ背景画像を読み込んでいる
 	gamemain_background = LoadGraph("texture/back.png");
+
+	//ちゃんと読み込まれているのか確認
+	if (gamemain_background == D_ERROR)
+	{
+		ret = D_ERROR;
+	}
+
+	//各種変数の初期化
 	around = 0;
 	countflag = 1;
 	count = 0;
 	signal = 3;
 	count_fontsize = 1.0f;
-	kaiten = 6.0f;
 	successfulcount = 0;
 	passcount = 0;
 
@@ -81,15 +93,27 @@ void GameMainScene_Update(void)
 {
 	if (countflag == 1)
 	{
+		//カウントダウンの制御をしているが、
+		//作った本人も忘れている
+		
+		//カウントを増やしている
 		count++;
+
+		//カウントのフォントを大きくする
 		count_fontsize += 0.008f;
-		kaiten += 0.05f;
+
+		//ここが忘れているポイントなんで80カウントで割って0だったらにしたのかが不明だが
+		//イイ感じになってるから80にしたはず
 		if (count % 80 == 0)
 		{
+			//カウントの数字を一つ減らしている
 			signal--;
+
+			//カウントのフォントを初期値に戻す
 			count_fontsize = 1.0f;
-			kaiten = 6.0f;
 		}
+
+		//カウントが終わったらゲーム終了しなくてもいいように初期化しておく
 		if (signal == 0)
 		{
 			countflag = 0;
@@ -101,15 +125,23 @@ void GameMainScene_Update(void)
 	}
 	else
 	{
+		//お題を描画中の時の操作
+		//Enterキーとマウスの左クリックでお題、成功と
+		//次のお題を出す。
 		if ((GetKeyFlag(KEY_INPUT_RETURN) == TRUE) || (GetMouseFlag(MOUSE_INPUT_1) == TRUE))
 		{
 			around += 1;
 			successfulcount += 1;
 		}
+
+		//バックスペースキーとマウスのホイールをクリックするとタイトルに戻る
 		if ((GetKeyFlag(KEY_INPUT_BACK) == TRUE) || (GetMouseFlag(MOUSE_INPUT_3) == TRUE))
 		{
 			Change_Scene(E_TITLE);
 		}
+
+		//スペースキーとマウスの右クリックでお題、パスと
+		//次のお題を出す。
 		if ((GetKeyFlag(KEY_INPUT_SPACE) == TRUE) || (GetMouseFlag(MOUSE_INPUT_2) == TRUE))
 		{
 			around += 1;
@@ -125,16 +157,19 @@ void GameMainScene_Update(void)
 ****************************/
 void GameMainScene_Draw(void)
 {
+	//背景を描画
 	DrawRotaGraph(990, 540, 1.0, 0, gamemain_background, TRUE);
 
+	//成功とパスの数を描画
 	DrawFormatString(50, 0, 0xED215B, "成功:%d パス数:%d",successfulcount,passcount);
-	//DrawFormatString(0, 180, 0xED215B, "パス数:%d", passcount); 
-
+	
 	SetFontSize(180);
-
+	
+	//フラグで管理していて1ならカウントダウン
+	//2ならお題を描画という感じです。
 	if (countflag == 1)
 	{
-
+		//カウントダウンの描画をしています。
 		switch (signal)
 		{
 		case 0:
@@ -212,23 +247,31 @@ void GameMainScene_Draw(void)
 ****************************/
 void file_read(void)
 {
+	//ファイルの読み込みに使う
 	FILE* fp = NULL;
 	int i;
 
+
 	OutputDebugString("ファイルを読み込みます");
+
+	//ここでファイルを読み込んでいる
 	fopen_s(&fp, ODAI_FILE, "r");
 
-
+	//ファイルがうまく読み込めなかったらデバックに文字列表示
+	//うまく行ったらOdai_Readの配列に格納される。
 	if (fp == NULL)
 	{
 		OutputDebugString("ファイルが読み込めません");
 	}
 	else
 	{
+		//ひとつひとつ配列に格納している。
 		for (i = 0; i < ODAI_MAX; i++)
 		{
 			fscanf_s(fp, "%d, %s,\n", &Odai_Read[i].num, Odai_Read[i].odai, ODAI_NAME_LEN);
 		}
+
+		//必ずファイルをクローズさせないとプログラムが物故割れるので消さないで
 		fclose(fp);
 	}
 
@@ -259,25 +302,31 @@ void Odai_Store()
 		{
 
 			int isexist = FALSE;	//数字が存在しているのかどうか確認するフラグ
-			randint = GetRand(230);
+			randint = GetRand(RAND_MAX);	//ランダムで値を入れています。
 			
 			//odai配列の中に同じ値が入っていないのか確認するループ文
 			for (int k = 0; k < ODAI_LIST_MAX; k++)
 			{
-				//
+				//同じ値があったら飛ばす。
 				if (odai[k] == randint)
 				{
 					isexist = TRUE;
 					break;
 				}
 			}
+			//同じ値が無かったらブレイクしてwhile文を抜ける
 			if (isexist != TRUE)
 			{
 				break;
 			}
 		}
+		//ランダムの値をお題の配列に格納している
 		odai[i] = randint;
+
+		//csvから読み込ん値をゲームで使うリストに格納している
 		Odai_List[i].num = Odai_Read[randint].num;
-		strcpy_s(Odai_List[i].odai, Odai_Read[randint].odai);
+
+		//こっちはcsvから読み込んだ文字列をゲームで使うリストに格納している
+		strcpy_s(Odai_List[i].odai, Odai_Read[randint].odai);		
 	}
 }
