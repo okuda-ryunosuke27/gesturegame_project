@@ -190,7 +190,7 @@ void GameMainScene_Draw(void)
 	else
 	{
 		//この中は文字がきれいに見えるように均等に分けております。
-		if (Odai_List[around].num == 1)	//一文字
+		if (Odai_List[around].num == 1)			//一文字
 		{
 			DrawRotaFormatString(790, 390, 2.5, 2.5, 0, 0, PI / -2, 0x000000, 0, TRUE, "%s", Odai_List[around].odai);
 		}
@@ -252,7 +252,7 @@ void file_read(void)
 	int i;
 
 
-	OutputDebugString("ファイルを読み込みます");
+	OutputDebugString("========ファイルを読み込みます========\n");
 
 	//ここでファイルを読み込んでいる
 	fopen_s(&fp, ODAI_FILE, "r");
@@ -261,7 +261,7 @@ void file_read(void)
 	//うまく行ったらOdai_Readの配列に格納される。
 	if (fp == NULL)
 	{
-		OutputDebugString("ファイルが読み込めません");
+		OutputDebugString("========ファイルが読み込めません========\n");
 	}
 	else
 	{
@@ -273,6 +273,8 @@ void file_read(void)
 
 		//必ずファイルをクローズさせないとプログラムが物故割れるので消さないで
 		fclose(fp);
+
+		OutputDebugString("========ファイルを読み込みました========\n");
 	}
 
 	
