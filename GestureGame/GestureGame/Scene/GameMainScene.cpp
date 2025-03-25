@@ -10,7 +10,7 @@
 ****************************/
 #define ODAI_FILE		("dat/odai_ansi.csv")		//お題をcsvで管理しているので書いてます。
 #define ODAI_MAX		(232)						//csvに入っているお題の個数
-#define ODAI_NAME_LEN	(25)						//マルチバイト文字のことを考えて12文字は24みたいな感じに多く書いてある
+#define ODAI_NAME_LEN	(25)						//マルチバイト文字のことを考えて12文字は24みたいな感じに多く書いてある。25文字にした理由は最後に終端文字を必ず入れたいから
 #define ODAI_LIST_MAX	(50)						//実行した時に出すお題の最大個数
 #define PI				(3.14f)						//回転率
 #define HEIGHT			(490)						//文字の中心座標
